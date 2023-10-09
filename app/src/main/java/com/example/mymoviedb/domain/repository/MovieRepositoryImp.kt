@@ -27,6 +27,16 @@ class MovieRepositoryImp @Inject constructor(
     }
 
     override fun getDetailMovie(movieId: String): Flow<BaseResult<MovieDetailResponse>> = movieRemoteDataSource.getDetailMovie(movieId)
+    override fun getSearchMovie(query: String): Flow<PagingData<MovieResponse.ResultsItem>> {
+        return Pager(
+            config = PagingConfig(
+                enablePlaceholders = false,
+                pageSize = 20,
+                initialLoadSize = 20
+            ),
+            pagingSourceFactory = { movieRemoteDataSource.getSearchMovie(query) }
+        ).flow
+    }
 
 //    override fun getAllMovieFavorite(): Flow<List<MovieEntity>> = movieRemoteDataSource.getAllMovieFavorite()
 //

@@ -13,6 +13,8 @@ interface MovieRemoteDataSource {
 
     fun getDetailMovie(movieId: String) : Flow<BaseResult<MovieDetailResponse>>
 
+    fun getSearchMovie(query: String) : PagingSource<Int, MovieResponse.ResultsItem>
+
 //    fun getAllMovieFavorite(): Flow<List<MovieEntity>>
 //
 //    suspend fun addMovieFavorite(movieEntity: MovieEntity)

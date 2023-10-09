@@ -10,4 +10,5 @@
     <string name="overview">Overview</string>
     <string name="release_on">Release :</string>
     <string name="strip">-</string>
+    <string name="data_is_empty">Empty Data</string>
 </resources>

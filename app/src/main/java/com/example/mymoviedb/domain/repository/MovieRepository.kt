@@ -13,6 +13,8 @@ interface MovieRepository {
 
     fun getDetailMovie(movieId: String) : Flow<BaseResult<MovieDetailResponse>>
 
+    fun getSearchMovie(query: String) : Flow<PagingData<MovieResponse.ResultsItem>>
+
 //    fun getAllMovieFavorite(): Flow<List<MovieEntity>>
 //
 //    suspend fun addMovieFavorite(movieEntity: MovieEntity)
