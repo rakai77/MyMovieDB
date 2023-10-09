@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MyMovieDB</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="this_is_image">This is Image</string>
+    <string name="failed_to_load_data">Failed to load data</string>
+    <string name="btn_retry">Retry</string>
+    <string name="overview">Overview</string>
+    <string name="release_on">Release :</string>
+    <string name="strip">-</string>
+</resources>
