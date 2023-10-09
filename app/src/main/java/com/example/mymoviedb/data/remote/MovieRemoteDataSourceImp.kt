@@ -58,6 +58,33 @@ class MovieRemoteDataSourceImp @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
+    override fun getSearchMovie(query: String): PagingSource<Int, MovieResponse.ResultsItem> {
+        return object : PagingSource<Int, MovieResponse.ResultsItem>() {
+            override fun getRefreshKey(state: PagingState<Int, MovieResponse.ResultsItem>): Int? {
+                return state.anchorPosition
+            }
+
+            override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieResponse.ResultsItem> {
+                return try {
+                    val moviePage = params.key ?: 1
+
+                    val response =  apiService.getSearchMovie(moviePage, query)
+                    val movie = response.body()?.results ?: emptyList()
+
+                    LoadResult.Page(
+                        data = movie,
+                        prevKey = null,
+                        nextKey = if (movie.isEmpty()) null else moviePage + 1
+                    )
+                } catch (e: IOException) {
+                    LoadResult.Error(e)
+                } catch (e: HttpException) {
+                    LoadResult.Error(e)
+                }
+            }
+        }
+    }
+
 //    override fun getAllMovieFavorite(): Flow<List<MovieEntity>> {
 //        return movieDao.loadAllMovie()
 //    }

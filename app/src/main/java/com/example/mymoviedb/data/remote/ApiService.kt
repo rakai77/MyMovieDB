@@ -21,4 +21,11 @@ interface ApiService {
         @Path("movie_id") movieId: String,
         @Query("api_key") clientId: String = BuildConfig.API_KEY
     ): Response<MovieDetailResponse>
+
+    @GET("search/movie")
+    suspend fun getSearchMovie(
+        @Query("page") page: Int,
+        @Query("query") query: String,
+        @Query("api_key") clientId: String = BuildConfig.API_KEY
+    ): Response<MovieResponse>
 }
