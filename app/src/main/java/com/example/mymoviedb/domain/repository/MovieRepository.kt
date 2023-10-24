@@ -15,9 +15,11 @@ interface MovieRepository {
 
     fun getSearchMovie(query: String) : Flow<PagingData<MovieResponse.ResultsItem>>
 
-//    fun getAllMovieFavorite(): Flow<List<MovieEntity>>
-//
-//    suspend fun addMovieFavorite(movieEntity: MovieEntity)
-//
-//    suspend fun deleteMovieFavorite(id: Int)
+    fun getAllMovieFavorite(): Flow<List<MovieEntity>>
+
+    suspend fun addMovieFavorite(movieEntity: MovieEntity)
+
+    suspend fun updateMovieFavorite(isChecked: Boolean, id: Int?)
+
+    suspend fun deleteMovieFavorite(id: Int)
 }

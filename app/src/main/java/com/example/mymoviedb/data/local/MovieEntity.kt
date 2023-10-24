@@ -21,6 +21,6 @@ data class MovieEntity (
     @ColumnInfo(name = "vote_average")
     var voteAverage: Double,
 
-    @ColumnInfo(name = "is_favourite")
-    var isFavourite: Boolean = false,
+    @ColumnInfo(name = "isFavorite")
+    var isFavorite: Boolean = false
 )

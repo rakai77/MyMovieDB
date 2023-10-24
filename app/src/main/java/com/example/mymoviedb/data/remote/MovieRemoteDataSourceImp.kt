@@ -3,6 +3,8 @@ package com.example.mymoviedb.data.remote
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.mymoviedb.data.BaseResult
+import com.example.mymoviedb.data.local.MovieDao
+import com.example.mymoviedb.data.local.MovieEntity
 import com.example.mymoviedb.data.response.MovieDetailResponse
 import com.example.mymoviedb.data.response.MovieResponse
 import kotlinx.coroutines.Dispatchers
@@ -15,6 +17,7 @@ import javax.inject.Inject
 
 class MovieRemoteDataSourceImp @Inject constructor(
     private val apiService: ApiService,
+    private val movieDao: MovieDao
 ) : MovieRemoteDataSource {
 
     override fun getPopularMovie(): PagingSource<Int, MovieResponse.ResultsItem> {
@@ -85,15 +88,20 @@ class MovieRemoteDataSourceImp @Inject constructor(
         }
     }
 
-//    override fun getAllMovieFavorite(): Flow<List<MovieEntity>> {
-//        return movieDao.loadAllMovie()
-//    }
-//
-//    override suspend fun addMovieFavorite(movieEntity: MovieEntity) {
-//        return movieDao.insertMovie(movieEntity)
-//    }
-//
-//    override suspend fun deleteMovieFavorite(id: Int) {
-//        return movieDao.deleteMovie(id)
-//    }
+    override fun getAllMovieFavorite(): Flow<List<MovieEntity>> {
+        return movieDao.getAllMovie()
+    }
+
+    override suspend fun addMovieFavorite(movieEntity: MovieEntity) {
+        return movieDao.insertMovie(movieEntity)
+    }
+
+    override suspend fun updateMovieFavorite(isChecked: Boolean, id: Int?) {
+        return movieDao.updateFavoriteTourism(isChecked, id)
+    }
+
+    override suspend fun deleteMovieFavorite(id: Int) {
+        return movieDao.removeMovieFromFavorite(id)
+    }
+
 }
