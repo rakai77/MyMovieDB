@@ -3,6 +3,7 @@ package com.example.mymoviedb.ui.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mymoviedb.data.BaseResult
+import com.example.mymoviedb.data.local.MovieEntity
 import com.example.mymoviedb.data.response.MovieDetailResponse
 import com.example.mymoviedb.domain.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,6 +34,12 @@ class DetailMovieViewModel @Inject constructor(private val movieRepository: Movi
                     }
                 }
             }
+        }
+    }
+
+    fun addFavorite(movie: MovieEntity) {
+        viewModelScope.launch {
+            movieRepository.addMovieFavorite(movie)
         }
     }
 

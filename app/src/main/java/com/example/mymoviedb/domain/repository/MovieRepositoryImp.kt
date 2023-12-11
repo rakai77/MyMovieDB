@@ -38,6 +38,22 @@ class MovieRepositoryImp @Inject constructor(
         ).flow
     }
 
+    override fun getAllMovieFavorite(): Flow<List<MovieEntity>> {
+        return movieRemoteDataSource.getAllMovieFavorite()
+    }
+
+    override suspend fun addMovieFavorite(movieEntity: MovieEntity) {
+        return movieRemoteDataSource.addMovieFavorite(movieEntity)
+    }
+
+    override suspend fun updateMovieFavorite(isChecked: Boolean, id: Int?) {
+        return movieRemoteDataSource.updateMovieFavorite(isChecked, id)
+    }
+
+    override suspend fun deleteMovieFavorite(id: Int) {
+        return movieRemoteDataSource.deleteMovieFavorite(id)
+    }
+
 //    override fun getAllMovieFavorite(): Flow<List<MovieEntity>> = movieRemoteDataSource.getAllMovieFavorite()
 //
 //    override suspend fun addMovieFavorite(movieEntity: MovieEntity) = movieRemoteDataSource.addMovieFavorite(movieEntity)

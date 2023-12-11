@@ -50,7 +50,7 @@ data class MovieDetailResponse(
 	val releaseDate: String,
 
 	@field:SerializedName("vote_average")
-	val voteAverage: Any,
+	val voteAverage: Double,
 
 	@field:SerializedName("tagline")
 	val tagline: String,
