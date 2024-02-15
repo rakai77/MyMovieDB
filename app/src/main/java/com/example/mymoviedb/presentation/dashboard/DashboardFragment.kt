@@ -42,13 +42,11 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        setupAction()
-        setupViewModel()
-        setupListener()
+        initView()
+        observer()
     }
 
-    private fun setupAction() {
+    private fun initView() {
         binding.apply {
             adapter = MoviePagingAdapter(onItemClick = {
                 val intent = Intent(requireContext(), DetailMovieActivity::class.java)
@@ -76,11 +74,7 @@ class DashboardFragment : Fragment() {
                     }
                 }
             }
-        }
-    }
 
-    private fun setupListener() {
-        binding.apply {
             svHome.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     return false
@@ -94,7 +88,7 @@ class DashboardFragment : Fragment() {
         }
     }
 
-    private fun setupViewModel() {
+    private fun observer() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.loadMovieBySearch().collectLatest {
                 adapter.submitData(it)

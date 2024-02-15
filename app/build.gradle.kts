@@ -65,9 +65,5 @@ dependencies {
     swipeRefresh()
     viewPager()
     hilt()
-    retrofit()
-    room()
-    dataStore()
-    paging()
     unitTest()
 }
