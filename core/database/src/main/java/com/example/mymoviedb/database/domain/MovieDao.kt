@@ -5,8 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.mymoviedb.core.data.local.MovieEntity
-import com.example.mymoviedb.core.domain.Movies
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {

@@ -50,6 +50,7 @@ dependencies {
 
     implementation(project(":core:data"))
     implementation(project(":core:network"))
+    implementation(project(":core:database"))
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

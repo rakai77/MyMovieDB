@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.mymoviedb.core.domain.MovieDetail
+import com.example.mymoviedb.core.domain.Movies
 import com.example.mymoviedb.databinding.ActivityDetailMovieBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -40,6 +41,8 @@ class DetailMovieActivity : AppCompatActivity() {
         observer()
 
         viewModel.getMovieCast(movieId!!)
+
+
     }
 
     private fun observer() {
@@ -53,8 +56,13 @@ class DetailMovieActivity : AppCompatActivity() {
             is DetailMovieUiState.Loading -> isLoading(state.loading)
             is DetailMovieUiState.Success -> initializeData(state.movieDetail)
             is DetailMovieUiState.Error -> handleError(state.error)
+            is DetailMovieUiState.SuccessFavorite -> addMovieToFavorite(state.movie)
             else -> Unit
         }
+    }
+
+    private fun addMovieToFavorite(movie: Movies) {
+        Toast.makeText(this, "Added to Favorite", Toast.LENGTH_SHORT).show()
     }
 
     private fun handleError(error: Throwable) {
@@ -67,12 +75,24 @@ class DetailMovieActivity : AppCompatActivity() {
     private fun initializeData(data: MovieDetail) {
         binding.apply {
             Glide.with(this@DetailMovieActivity)
-                .load("https://image.tmdb.org/t/p/w500/" + data?.posterPath)
+                .load("https://image.tmdb.org/t/p/w500/" + data.posterPath)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(imgMoviePoster)
             tvReleaseOn.text = data.releaseDate
             tvOverview.text = data.overview
             tvRatting.text = data.voteAverage.toString()
+
+            imgFavorite.setOnClickListener {
+                viewModel.addMovieFavorite(
+                    Movies(
+                        data.id,
+                        data.title,
+                        data.posterPath,
+                        data.voteAverage,
+                        true
+                    )
+                )
+            }
         }
     }
 
