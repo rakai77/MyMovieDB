@@ -1,11 +1,13 @@
-package com.example.mymoviedb.core.data.remote.dto.mapper
+package com.example.mymoviedb.core.data
 
+import com.example.mymoviedb.core.data.local.MovieEntity
 import com.example.mymoviedb.core.data.remote.dto.MovieDetailResponse
 import com.example.mymoviedb.core.data.remote.dto.MovieItemResult
 import com.example.mymoviedb.core.data.remote.dto.MovieResponse
 import com.example.mymoviedb.core.domain.Movie
 import com.example.mymoviedb.core.domain.MovieDetail
 import com.example.mymoviedb.core.domain.MovieItem
+import com.example.mymoviedb.core.domain.Movies
 
 fun MovieResponse.toDomain() = Movie(
     page = this.page ?: 0,
@@ -28,4 +30,20 @@ fun MovieDetailResponse.toDomain() = MovieDetail(
     releaseDate = this.releaseDate ?: "",
     overview = this.overview ?: "",
     voteAverage = this.voteAverage ?: 0.0
+)
+
+fun MovieEntity.toDomain() = Movies(
+    id = this.id,
+    title = this.title ?: "",
+    posterPath = this.posterPath ?: "",
+    voteAverage = this.voteAverage ?: 0.0,
+    isFavorite = this.isFavorite
+)
+
+fun Movies.toEntity() = MovieEntity(
+    id = this.id,
+    title = this.title,
+    posterPath = this.posterPath,
+    voteAverage = this.voteAverage,
+    isFavorite = this.isFavorite
 )

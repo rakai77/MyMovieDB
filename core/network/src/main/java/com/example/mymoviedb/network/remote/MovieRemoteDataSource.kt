@@ -3,8 +3,7 @@ package com.example.mymoviedb.network.remote
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.mymoviedb.core.BaseResult
-import com.example.mymoviedb.core.data.remote.dto.MovieDetailResponse
-import com.example.mymoviedb.core.data.remote.dto.mapper.toDomain
+import com.example.mymoviedb.core.data.toDomain
 import com.example.mymoviedb.core.domain.MovieDetail
 import com.example.mymoviedb.core.domain.MovieItem
 import com.example.mymoviedb.network.domain.repository.MovieRepository
