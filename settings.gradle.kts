@@ -15,4 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyMovieDB"
 include(":app")
- 
+include(":core:data")
+include(":core:network")
+include(":core:database")
