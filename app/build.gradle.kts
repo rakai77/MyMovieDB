@@ -16,9 +16,6 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
-        buildConfigField("String", "API_KEY", "\"b917efbd6df2adf02c62cf3b78882e78\"")
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -51,6 +48,9 @@ android {
 
 dependencies {
 
+    implementation(project(":core:data"))
+    implementation(project(":core:network"))
+    implementation(project(":core:database"))
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -65,9 +65,7 @@ dependencies {
     swipeRefresh()
     viewPager()
     hilt()
-    retrofit()
-    room()
-    dataStore()
     paging()
+    retrofit()
     unitTest()
 }
