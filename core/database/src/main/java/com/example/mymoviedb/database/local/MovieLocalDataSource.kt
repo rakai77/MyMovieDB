@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import java.sql.SQLException
 import javax.inject.Inject
 
 class MovieLocalDataSource @Inject constructor(
@@ -23,11 +24,14 @@ class MovieLocalDataSource @Inject constructor(
             emit(BaseResult.Success(movies))
         }.catch { e ->
             when(e) {
+                is SQLException -> {
+                    emit(BaseResult.Error(e.message ?: ""))
+                }
                 is SQLiteConstraintException -> {
-                    emit(BaseResult.Error(e))
+                    emit(BaseResult.Error(e.message ?: ""))
                 }
                 else -> {
-                    emit(BaseResult.Error(e))
+                    emit(BaseResult.Error(e.message ?: ""))
                 }
             }
         }.flowOn(Dispatchers.IO)
@@ -39,18 +43,18 @@ class MovieLocalDataSource @Inject constructor(
             if (movie.isNotEmpty()) {
                 emit(BaseResult.Success(movie))
             } else {
-                emit(BaseResult.Error(Throwable()))
+                emit(BaseResult.Error(""))
             }
         }.catch {
-            emit(BaseResult.Error(it))
-        }
+            emit(BaseResult.Error(it.message ?: ""))
+        }.flowOn(Dispatchers.IO)
     }
 
 
     override suspend fun deleteMovieFavorite(id: Int): Flow<BaseResult<Movies>> {
-        return flow {
+        return flow<BaseResult<Movies>> {
             movieDao.removeMovieFromFavorite(id)
-        }
+        }.flowOn(Dispatchers.IO)
     }
 
 }

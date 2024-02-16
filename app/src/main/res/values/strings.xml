@@ -13,4 +13,5 @@
     <string name="data_is_empty">Empty Data</string>
 
     <string name="btn_favorite">Add to favorite</string>
+    <string name="iconButton">icon button</string>
 </resources>

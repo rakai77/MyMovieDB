@@ -62,14 +62,11 @@ class DetailMovieActivity : AppCompatActivity() {
     }
 
     private fun addMovieToFavorite(movie: Movies) {
-        Toast.makeText(this, "Added to Favorite", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "${movie.title} Added to Favorite", Toast.LENGTH_SHORT).show()
     }
 
-    private fun handleError(error: Throwable) {
-        when(error) {
-            is IOException -> Toast.makeText(this, "${error.message}", Toast.LENGTH_SHORT).show()
-            else -> Toast.makeText(this, "${error.message}", Toast.LENGTH_SHORT).show()
-        }
+    private fun handleError(error: String) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
     }
 
     private fun initializeData(data: MovieDetail) {

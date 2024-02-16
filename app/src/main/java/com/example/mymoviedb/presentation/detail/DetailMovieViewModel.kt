@@ -44,7 +44,7 @@ class DetailMovieViewModel @Inject constructor(
                             _state.emit(DetailMovieUiState.Success(result.data))
                         }
                         is BaseResult.Error -> {
-                            _state.emit(DetailMovieUiState.Error(result.exception))
+                            _state.emit(DetailMovieUiState.Error(result.message))
                         }
                         else -> Unit
                     }
@@ -63,7 +63,7 @@ class DetailMovieViewModel @Inject constructor(
                             _state.emit(DetailMovieUiState.SuccessFavorite(result.data))
                         }
                         is BaseResult.Error -> {
-                            Log.d("Error", "addMovieFavorite: ${result.exception.message}")
+                            _state.emit(DetailMovieUiState.Error(result.message))
                         }
                         else -> Unit
                     }

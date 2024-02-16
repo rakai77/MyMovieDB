@@ -56,7 +56,7 @@ class MovieRemoteDataSource @Inject constructor(
                     emit(BaseResult.Success(body.toDomain()))
                 }
             } catch (e: Throwable) {
-                emit(BaseResult.Error(e))
+                emit(BaseResult.Error(e.message ?: ""))
             }
         }.flowOn(Dispatchers.IO)
     }
