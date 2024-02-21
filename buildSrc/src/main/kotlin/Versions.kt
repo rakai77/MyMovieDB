@@ -18,4 +18,7 @@ object Versions {
     const val junit = "4.13.2"
     const val extJunit = "1.1.5"
     const val expresoCore = "3.5.1"
+    const val mockkAndroid = "1.13.3"
+    const val turbine = "1.0.0"
+    const val coroutines = "1.8.0"
 }

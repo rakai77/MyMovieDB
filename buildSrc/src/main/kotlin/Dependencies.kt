@@ -42,6 +42,11 @@ object Dependencies {
     const val junit = "junit:junit:${Versions.junit}"
     const val extJunit = "androidx.test.ext:junit:${Versions.extJunit}"
     const val expresoCore = "androidx.test.espresso:espresso-core:${Versions.expresoCore}"
+
+    //Unit Test
+    const val mockkAndroid = "io.mockk:mockk-android:${Versions.mockkAndroid}"
+    const val mockAgent = "io.mockk:mockk-agent:${Versions.mockkAndroid}"
+    const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
 }
 
 fun DependencyHandler.room() {
@@ -102,6 +107,12 @@ fun DependencyHandler.shimmer() {
 
 fun DependencyHandler.viewPager() {
     implementation(Dependencies.viewpager)
+}
+
+fun DependencyHandler.testing() {
+    testImplementation(Dependencies.mockkAndroid)
+    testImplementation(Dependencies.mockAgent)
+    testImplementation(Dependencies.turbine)
 }
 
 fun DependencyHandler.unitTest() {
